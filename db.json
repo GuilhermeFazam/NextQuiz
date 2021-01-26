@@ -39,5 +39,21 @@
         "success": "#4CAF50"
       },
       "borderRadius": "4px"
-    }
+    },
+    "metatagsOG": [
+      {
+        "image": "https://i2.wp.com/css-tricks.com/wp-content/uploads/2017/06/css-is-awesome-scaled.jpg?resize=1536%2C1208&ssl=1",
+        "title": "NextQuiz — Um Quiz desenvolvido em NEXT.JS",
+        "description": "Projeto desenvolvido durante a Imersão Alura React, Next.js #2",
+        "url": "https://next-quiz-smoky.vercel.app/",
+
+        "answer": 2,
+        "alternatives": [
+          ".elemento",
+          "*elemento",
+          "#elemento",
+          "%elemento"
+        ]
+      }
+    ]
   }
