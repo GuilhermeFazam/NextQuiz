@@ -1,9 +1,9 @@
-import React, { LinkHTMLAttributes, ReactNode } from 'react';
-import styled from 'styled-components';
+import React, { LinkHTMLAttributes, ReactNode } from 'react'
+import styled from 'styled-components'
 
 interface GitHubCornerProps extends LinkHTMLAttributes<HTMLLinkElement> {
-    projectUrl: string;
-    children?: ReactNode;
+    projectUrl: string
+    children?: ReactNode
 }
 const Wrapper = styled.div`
     position: absolute;
@@ -11,7 +11,7 @@ const Wrapper = styled.div`
     border: 0;
     right: 0;
     z-index: 20;
-`;
+`
 
 const SVGWrapper = styled.svg`
     fill: ${({ theme }) => theme.colors.secondary};
@@ -42,7 +42,7 @@ const SVGWrapper = styled.svg`
             animation: octocat-wave 560ms ease-in-out;
         }
     }
-`;
+`
 const GitHubCorner: React.FC<GitHubCornerProps> = ({ projectUrl }) => (
     <Wrapper>
         <a href={projectUrl} target="_blank" rel="noreferrer">
@@ -68,6 +68,6 @@ const GitHubCorner: React.FC<GitHubCornerProps> = ({ projectUrl }) => (
             </SVGWrapper>
         </a>
     </Wrapper>
-);
+)
 
-export default GitHubCorner;
+export default GitHubCorner

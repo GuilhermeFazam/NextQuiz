@@ -1,7 +1,7 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 interface QuizBackgroundProps {
-    backgroundImage: string;
+    backgroundImage: string
 }
 
 const QuizBackground = styled.div<QuizBackgroundProps>`
@@ -36,5 +36,5 @@ const QuizBackground = styled.div<QuizBackgroundProps>`
             z-index: 10;
         }
     }
-`;
-export default QuizBackground;
+`
+export default QuizBackground
