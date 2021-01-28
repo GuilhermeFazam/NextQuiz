@@ -1,49 +1,43 @@
-import styled from 'styled-components'
+import { useRouter } from 'next/router';
+import React, { FormEvent, useState } from 'react';
+import { WidgetContainer, WidgetContent, WidgetHeader, WidgetImage } from './styles';
+import QuizLogo from '../../assets/img/logo.png';
+const Widget: React.FC = () => {
+    const routes = useRouter();
+    const [name, setName] = useState('');
 
-export const Widget = styled.div`
-  margin-top: 24px;
-  margin-bottom: 24px;
-  border: 1px solid ${({ theme }) => theme.colors.primary};
-  background-color: ${({ theme }) => theme.colors.mainBg};
-  border-radius: 4px;
-  overflow: hidden;
-  h1,
-  h2,
-  h3 {
-    font-size: 16px;
-    font-weight: 700;
-    line-height: 1;
-    margin-bottom: 0;
-  }
-  p {
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1;
-  }
-`
+    function handleSubmit(event: FormEvent): void {
+        event.preventDefault();
+        console.log('teste');
+        routes.push(`/quiz?name=${name}`);
+    }
 
-export const WidgetHeader = styled.header`
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 18px 32px;
-  background-color: ${({ theme }) => theme.colors.primary};
+    return (
+        <>
+            <WidgetImage src={QuizLogo} />
+            <WidgetContainer>
+                <WidgetHeader>
+                    <h1>O que voce sabe sobre El Dia de los Muertos {name}?</h1>
+                </WidgetHeader>
+                <WidgetContent>
+                    <form onSubmit={handleSubmit}>
+                        <input placeholder="Entre com seu nome" type="text" onChange={event => setName(event.target.value)} />
+                        <button type="submit" disabled={name.length === 0}>
+                            Jogar
+                        </button>
+                    </form>
+                </WidgetContent>
+            </WidgetContainer>
+            <WidgetContainer>
+                <WidgetHeader>
+                    <h1>Marvel</h1>
+                </WidgetHeader>
+                <WidgetContent>
+                    <p>teste</p>
+                </WidgetContent>
+            </WidgetContainer>
+        </>
+    );
+};
 
-  * {
-    margin: 0;
-  }
-`
-
-export const WidgetContent = styled.div`
-  padding: 24px 32px 32px 32px;
-  & > *:first-child {
-    margin-top: 0;
-  }
-  & > *:last-child {
-    margin-bottom: 0;
-  }
-  ul {
-    list-style: none;
-    padding: 0;
-  }
-`
+export default Widget;
