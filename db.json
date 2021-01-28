@@ -5,7 +5,7 @@
     "questions": [
         {
             "image": "https://media.giphy.com/media/l46Cn7kIV3wtEvKso/giphy.gif",
-            "title": "Qual o filem mais elogiado da franquia?",
+            "title": "Qual o filme mais elogiado da franquia?",
             "description": "Essa é facil",
             "answer": 2,
             "alternatives": [
