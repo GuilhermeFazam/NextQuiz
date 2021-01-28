@@ -1,39 +1,35 @@
 import { useRouter } from 'next/router';
 import React, { FormEvent, useState } from 'react';
-import { WidgetContainer, WidgetContent, WidgetHeader, WidgetImage } from './styles';
-import QuizLogo from '../../assets/img/logo.png';
+import { WidgetContainer, WidgetContent, WidgetHeader } from './styles';
+import Input from '../Forms/Input';
+import Button from '../Forms/Button';
+
+interface WidgetsProps {
+    title: string;
+}
+
 const Widget: React.FC = () => {
     const routes = useRouter();
-    const [name, setName] = useState('');
-
+    const [username, setUsername] = useState('');
     function handleSubmit(event: FormEvent): void {
         event.preventDefault();
         console.log('teste');
-        routes.push(`/quiz?name=${name}`);
+        routes.push(`/quiz?name=${username}`);
     }
 
     return (
         <>
-            <WidgetImage src={QuizLogo} />
             <WidgetContainer>
                 <WidgetHeader>
-                    <h1>O que voce sabe sobre El Dia de los Muertos {name}?</h1>
+                    <h1>
+                        <span>&nbsp;{username}</span>Do you want to play a game?
+                    </h1>
                 </WidgetHeader>
                 <WidgetContent>
                     <form onSubmit={handleSubmit}>
-                        <input placeholder="Entre com seu nome" type="text" onChange={event => setName(event.target.value)} />
-                        <button type="submit" disabled={name.length === 0}>
-                            Jogar
-                        </button>
+                        <Input name="Nome" placeholder="Digite seu nome" onChange={event => setUsername(event.target.value)} required />
+                        <Button text="Jogar" type="submit" disabled={username.length === 0} />
                     </form>
-                </WidgetContent>
-            </WidgetContainer>
-            <WidgetContainer>
-                <WidgetHeader>
-                    <h1>Marvel</h1>
-                </WidgetHeader>
-                <WidgetContent>
-                    <p>teste</p>
                 </WidgetContent>
             </WidgetContainer>
         </>

@@ -44,3 +44,13 @@ export const QuizContainer = styled.div`
     padding: 15px;
   }
 `;
+
+export const SuccessMessage = styled.div`
+  h1 {
+    color: ${({ theme }) => theme.colors.primary};
+    display: block;
+    font-size: 50px;
+    margin: 15% 5%;
+    font-weight: bold;
+  }
+`;
