@@ -1,12 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import db from '../../../db.json';
 import Button from '../../components/Forms/Button';
 import { QuizBackground, QuizContainer, SuccessMessage } from '../../styles/pages';
 import { WidgetContainer, WidgetContent, WidgetHeader, WidgetTopic, FormAlternatives } from '../../components/Widget/styles';
 import { useRouter } from 'next/router';
 import BackLinkArrow from '../../components/BackLinkArrow';
 
-const QuizPage: React.FC = () => {
+interface QuestionProps {
+    [index: number]: { image: string; title: string; answer: number; description: string; alternatives: [] };
+}
+
+interface externalQuestionsProps {
+    questions: QuestionProps[];
+}
+interface QuizScreenProps {
+    externalQuestions: externalQuestionsProps[];
+    externalBg: string;
+}
+
+const QuizScreen: React.FC<QuizScreenProps> = ({ externalQuestions, externalBg }) => {
     const screenStates = {
         QUIZ: 'QUIZ',
         LOADING: 'LOADING',
@@ -14,12 +25,12 @@ const QuizPage: React.FC = () => {
     };
 
     const [screenState, setScreenState] = useState(screenStates.LOADING);
-    const totalQuestions = db.questions.length;
     const [results, setResults] = useState([]);
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const questionIndex = currentQuestion;
-    const question = db.questions[questionIndex];
-
+    const question = externalQuestions[questionIndex];
+    const totalQuestions = externalQuestions.length;
+    const bg = externalBg;
     function addResult(result: boolean): void {
         setResults([...results, result]);
     }
@@ -109,7 +120,7 @@ const QuizPage: React.FC = () => {
     }
 
     return (
-        <QuizBackground backgroundImage={db.bg}>
+        <QuizBackground backgroundImage={bg}>
             <QuizContainer>{screenState === screenStates.QUIZ && <QuestionWidget question={question} questionIndex={questionIndex} totalQuestions={totalQuestions} onSubmit={handleSubmitQuiz} addResult={addResult} />}</QuizContainer>
             {screenState === screenStates.LOADING && <LoadingWidget />}
             {screenState === screenStates.RESULT && (
@@ -131,4 +142,4 @@ const QuizPage: React.FC = () => {
     );
 };
 
-export default QuizPage;
+export default QuizScreen;
