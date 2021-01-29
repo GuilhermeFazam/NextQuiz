@@ -4,10 +4,6 @@ import { WidgetContainer, WidgetContent, WidgetHeader } from './styles';
 import Input from '../Forms/Input';
 import Button from '../Forms/Button';
 
-interface WidgetsProps {
-    title: string;
-}
-
 const Widget: React.FC = () => {
     const routes = useRouter();
     const [username, setUsername] = useState('');
